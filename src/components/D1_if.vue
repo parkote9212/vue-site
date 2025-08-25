@@ -1,18 +1,21 @@
 <template>
   <div>
     <h3>V-IF문</h3>
-    <p v-if="typerwriterInStock">재고있음</p>
+    
+    <p v-if="typerwriterInStock">재고있음 재고확인결과 : {{ typerwriterInStock }}</p>
     <p v-else>재고없음</p>
     <h3>V-IF문2</h3>
-    <p v-if="typerwriterCount > 3">재고있음 {{ typerwriterCount }}</p>
-    <p v-else-if="typerwriterCount > 0">재고조금남았어 {{ typerwriterCount }}</p>
+    <p v-if="typerwriterCount > 3">재고있음 재고 : {{ typerwriterCount }}</p>
+    <p v-else-if="typerwriterCount > 0">재고조금남았어 재고 : {{ typerwriterCount }}</p>
     <p v-else>재고없음</p>
     <h3>함수 반환값 사용 V-IF</h3>
-    <p v-if="text.includes('pizza')">문장에 피자가 포함되어있음 {{ typerwriterCount }}</p>
+    <p>{{ text }}</p>
+    <p v-if="text.includes('pizza')">문장에 피자가 포함되어있음 </p>
     <p v-else>문장에 피자가 포함되어있지 않음</p>
 
     <h3>V-IF 사용 div img 생성</h3>
     <div>
+      {{text2}}
       <div v-if="text2.includes('pizza')">
         <p>문장에 피자가 포함되어있음</p>
         <img :src="pizzaImg" alt="pizza" />

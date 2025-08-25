@@ -1,14 +1,21 @@
 <template>
-  <div>
-    <div :style="{ backgroundColor: isImportant ? 'yellow' : 'blue' }"></div>
-    <br />
-    <div :style="{ fontSize: size }">ref 사용 글자 속성</div>
-    <br />
-    <div :class="className">ClassName 사용</div>
-    <br />
+  <div class="container">
+    <div :style="{ backgroundColor: isImportant ? 'yellow' : 'blue' }" class="example-box">
+      Style 바인딩 (배경색)
+    </div>
+
+    <div :style="{ fontSize: size }" class="example-box">
+      ref 사용 글자 속성
+    </div>
+
+    <div :class="className" class="example-box">
+      ClassName 사용
+    </div>
+    
+    <div :class="{ myClass: isImportant }" class="example-box">
+      class If문
+    </div>
   </div>
-  <div :class="{ myClass: isImportant }">class If문</div>
-  <h2>v if</h2>
 </template>
 
 <script setup>
@@ -20,14 +27,31 @@ const className = ref("impClass");
 </script>
 
 <style scoped>
-div {
-  width: 200px;
-  height: 100px;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
+
+.example-box {
+  width: 250px;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
 .impClass {
   background-color: lightcoral;
+  color: white;
 }
+
 .myClass {
   background-color: grey;
+  color: white;
 }
 </style>
