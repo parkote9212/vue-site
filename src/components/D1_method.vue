@@ -62,4 +62,35 @@ function mousePos(e){
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
 }
+
+ #app3 {
+      border: black dashed 1px;
+      width: 300px;
+      padding: 20px;
+    }
+    #app3 > div {
+      width: 100%;
+      position: relative;
+      margin-top: 10px;
+      aspect-ratio: 1;
+      background-image: url("img_notebook.jpg");
+      background-size: 340%;
+      background-position: -345px 0;
+      overflow: hidden;
+    }
+    #app3 span {
+      width: 80%;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      line-height: 1.2em;
+      transform-origin: 0 0;
+      rotate: 33deg;
+      position: absolute;
+      top: 50px;
+      left: 70px;
+    }
+    #app3 textarea {
+      width: 100%;
+      box-sizing: border-box;
+    }
 </style>
