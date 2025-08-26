@@ -27,8 +27,26 @@ const activeComp = ref("D1_bind")
 </template>
 
 <style scoped>
+/* 버튼을 감싸는 컨테이너 역할을 할 div를 추가하면 좋습니다. */
+.button-nav {
+  margin-bottom: 20px;
+  display: flex; /* 버튼들을 가로로 정렬 */
+  gap: 8px; /* 버튼 사이의 간격 */
+}
 
 button {
-  margin-bottom: 20px;
+  padding: 8px 16px; /* 버튼 내부 여백 */
+  border: 1px solid #ccc; /* 테두리 */
+  border-radius: 10px; /* 둥근 모서리 */
+  background-color: #f8f9fa; /* 배경색 */
+  color: #333; /* 글자색 */
+  font-size: 14px; /* 글자 크기 */
+  cursor: pointer; /* 마우스 커서 모양 변경 */
+  transition: all 0.2s ease; /* 부드러운 전환 효과 */
+}
+
+button:hover {
+  background-color: #e9ecef; /* 마우스를 올렸을 때 배경색 */
+  border-color: #adb5bd;
 }
 </style>

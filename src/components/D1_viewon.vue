@@ -1,26 +1,21 @@
 <template>
-  <!-- 모든 예제를 감싸는 부모 컨테이너를 추가합니다 -->
   <div class="main-container">
-    <h3>무스 카운터</h3>
-    <div id="app">
-      <!-- Moose 카운터 내용 -->
-
+    <div id="app" class="example-box">
+      <h3>무스 카운터</h3>
       <img :src="moose" />
       <p>{{ "Moose count: " + count }}</p>
       <button @click="count++">Count moose</button>
     </div>
 
-    <div id="lightDiv">
-      <!-- 전구 스위치 내용 -->
+    <div id="lightDiv" class="example-box">
       <h3>전구 스위치 버튼</h3>
       <div class="light-effect" v-show="lightOn"></div>
       <img :src="light" alt="light" />
       <button @click="lightOn = !lightOn">Switch light</button>
     </div>
 
-    <div id="inputWrapper">
+    <div id="inputWrapper" class="example-box">
       <h3>키 입력 카운터</h3>
-      <!-- 키 입력 카운터 내용 -->
       <input
         type="text"
         v-on:input="inpCount++"
@@ -29,23 +24,33 @@
       <p>{{ "키입력 횟수: " + inpCount }}</p>
     </div>
 
-    <div>
+    <div id="mouseoverWrapper" class="example-box">
       <h3>마우스오버</h3>
       <div
         id="box"
-        v-on:mousemove="colorVal = Math.floor(Math.random() * 360)"
+        @mousemove="colorVal = Math.floor(Math.random() * 360)"
         :style="{ backgroundColor: 'hsl(' + colorVal + ',60%, 60%)' }"
       ></div>
       <p>background-color : hsl({{ colorVal }}, 60%, 60%)</p>
     </div>
-    <div id="foodWrapper">
-      <img :src="imgUrl" />
-      <ol>
-        <li v-for="food in manyFoods" @click="imgUrl = food.url">
-          {{ food.name }}
-        </li>
-      </ol>
+
+    <div id="foodWrapper" class="example-box">
+      <h3>음식 리스트</h3>
+      <div class="food-content">
+        <ol>
+          <li v-for="food in manyFoods" @click="imgUrl = food.url">
+            {{ food.name }}
+          </li>
+        </ol>
+        <img :src="imgUrl" />
+      </div>
     </div>
+    <div id="foodMouseoverWrapper" class="example-box">
+  <h3>마우스오버 음식 변경</h3>
+  <p>아래 박스 안에서 마우스를 움직여보세요.</p>
+  <div id="food-box" @mousemove="changeFoodImage"></div>
+  <img :src="currentFoodImage" alt="food image" class="food-display-image" />
+</div>
   </div>
 </template>
 
@@ -64,117 +69,143 @@ const count = ref(0);
 const lightOn = ref(false);
 const inpCount = ref(0);
 const colorVal = ref(60);
-     const imgUrl = ref(Burrito);
-       const manyFoods = [
-          {name: 'Burrito', url: Burrito},
-          {name: 'Salad', url: Salad},
-          {name: 'Cake', url: Cake},
-          {name: 'Soup', url: Soup},
-          {name: 'Fish', url: Fish},
-          {name: 'Pizza', url: Pizza},
-          {name: 'Rice', url: Rice}
-      ]
+const imgUrl = ref(Burrito);
+const manyFoods = [
+  { name: "Burrito", url: Burrito },
+  { name: "Salad", url: Salad },
+  { name: "Cake", url: Cake },
+  { name: "Soup", url: Soup },
+  { name: "Fish", url: Fish },
+  { name: "Pizza", url: Pizza },
+  { name: "Rice", url: Rice },
+];
+const currentFoodImage = ref(Burrito); // 초기 이미지 설정
+let mouseMoveCounter = 0; // 마우스 움직임 횟수를 세는 변수
+
+// ⭐️ 마우스를 움직일 때마다 이미지를 변경하는 함수 추가
+const changeFoodImage = () => {
+  mouseMoveCounter++;
+  // 마우스가 5번 움직일 때마다 이미지를 변경 (너무 자주 바뀌는 것을 방지)
+  if (mouseMoveCounter % 5 === 0) {
+    // 1. manyFoods 배열에서 랜덤 인덱스 선택
+    const randomIndex = Math.floor(Math.random() * manyFoods.length);
+    // 2. 랜덤 인덱스에 해당하는 이미지 URL로 변경
+    currentFoodImage.value = manyFoods[randomIndex].url;
+  }
+};
 </script>
 
 <style scoped>
-/* 1. 전체를 감싸는 Flexbox 컨테이너 */
+/* 전체를 감싸는 Flexbox 컨테이너 */
 .main-container {
   display: flex;
-  justify-content: center; /* 아이템들을 가로축 중앙에 배치 */
-  align-items: flex-start; /* 아이템들을 세로축 상단에 정렬 */
-  flex-wrap: wrap; /* 화면이 좁아지면 아이템이 다음 줄로 넘어감 */
-  gap: 30px; /* 각 아이템 사이의 간격을 30px로 설정 */
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
   padding: 20px;
 }
 
-/* 2. 각 예제 박스의 공통 스타일 수정 */
-#app,
-#lightDiv,
-#inputWrapper {
-  border: dashed black 1px;
+/* ⭐️ 1. 모든 예제 박스의 공통 스타일 */
+.example-box {
+  border: 1px dashed black;
   padding: 20px;
-  /* 내용을 가운데 정렬하기 위한 Flexbox 설정 */
+  width: 250px; /* 기본 너비 통일 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px; /* 내부 요소들 간의 간격 */
+  gap: 15px;
 }
 
-#app {
-  width: 200px;
-}
-
+/* ⭐️ 2. 각 박스별 개별 스타일 */
 #lightDiv {
+  /* 외곽선을 다시 적용하기 위해 border: none 제거 */
+  padding: 20px; /* 외곽선과 내용물 사이의 여백을 위해 padding 다시 추가 */
+  width: 200px; 
+  height: 200px;
   position: relative;
-  width: 150px;
-  height: 150px;
-  padding: 0; /* 내부 이미지에 맞게 패딩 제거 */
-  border: none; /* 테두리 제거 */
+  justify-content: center;
+  margin-top: 50px; /* 원하는 만큼 값을 조절하여 아래로 내립니다 */
 }
 
-#inputWrapper {
-  width: 200px;
+#foodWrapper .food-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-/* 3. 이미지 및 기타 요소 스타일 정리 */
+/* 3. 내부 요소 스타일 */
 img {
   width: 100%;
   display: block;
 }
+
 #lightDiv > img {
-  position: relative; /* z-index를 적용하려면 position: static이 아니어야 합니다. */
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  z-index: 1; /* 전구 이미지를 노란색 div 위에 표시 */
 }
 
 .light-effect {
   position: absolute;
-  top: 10%;
-  left: 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* ⭐️ 정중앙 배치 */
   width: 80%;
   height: 80%;
   border-radius: 50%;
   background-color: yellow;
   box-shadow: 0 0 30px 15px yellow;
-  z-index: 0; /* 노란색 div를 전구 이미지 아래에 표시 (기본값) */
+  z-index: 0;
 }
 
-button {
+button,
+input {
   width: 100%;
   padding: 8px;
+  box-sizing: border-box; /* padding이 너비에 포함되도록 설정 */
 }
 
 #box {
-  width: 200px;
+  width: 100%;
   height: 80px;
 }
 
-#foodWrapper {
-  border: dashed black 1px;
-  width: 220px;
-  padding: 20px;
+#foodWrapper img {
+  width: 50%;
 }
 
-#foodWrapper > img {
-  float: right;
-  width: 55%;
-}
-
-#foodWrapper li:hover {
-  cursor: pointer;
-  background-color: rgb(224, 224, 224);
-}
-
-#foodWrapper > ol {
+#foodWrapper ol {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
 #foodWrapper li {
-  padding-left: 6px;
+  padding: 4px 8px;
   border-radius: 5px;
-  width: 70px;
+  cursor: pointer;
+}
+
+#foodWrapper li:hover {
+  background-color: rgb(224, 224, 224);
+}
+/* 기존 style 코드 아래에 이어서 추가하세요 */
+
+/* ⭐️ 새로운 예제 박스(#foodMouseoverWrapper) 내부 스타일 */
+#food-box {
+  width: 100%;
+  height: 150px;
+  border: 2px solid #a3a3a3;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+
+.food-display-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* 이미지가 잘리지 않고 비율에 맞게 표시되도록 설정 */
 }
 </style>
