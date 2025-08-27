@@ -1,20 +1,21 @@
 <template>
-  <div class="main-container">
-    <div id="app" class="example-box">
+<h1>CSS 레이아웃 수정중</h1>
+<div id="container">
+    <div class="card">
       <h3>무스 카운터</h3>
       <img :src="moose" />
       <p>{{ "Moose count: " + count }}</p>
       <button @click="count++">Count moose</button>
     </div>
 
-    <div id="lightDiv" class="example-box">
+   <div id="light-card" class="card">
       <h3>전구 스위치 버튼</h3>
       <div class="light-effect" v-show="lightOn"></div>
       <img :src="light" alt="light" />
       <button @click="lightOn = !lightOn">Switch light</button>
     </div>
 
-    <div id="inputWrapper" class="example-box">
+    <div  class="card">
       <h3>키 입력 카운터</h3>
       <input
         type="text"
@@ -24,7 +25,7 @@
       <p>{{ "키입력 횟수: " + inpCount }}</p>
     </div>
 
-    <div id="mouseoverWrapper" class="example-box">
+     <div id="mouseover-card" class="card">
       <h3>마우스오버</h3>
       <div
         id="box"
@@ -34,7 +35,7 @@
       <p>background-color : hsl({{ colorVal }}, 60%, 60%)</p>
     </div>
 
-    <div id="foodWrapper" class="example-box">
+     <div id="food-card" class="card">
       <h3>음식 리스트</h3>
       <div class="food-content">
         <ol>
@@ -45,13 +46,14 @@
         <img :src="imgUrl" />
       </div>
     </div>
-    <div id="foodMouseoverWrapper" class="example-box">
+
+    <div id="foodMouseoverWrapper" class="card">
   <h3>마우스오버 음식 변경</h3>
   <p>아래 박스 안에서 마우스를 움직여보세요.</p>
   <div id="food-box" @mousemove="changeFoodImage"></div>
   <img :src="currentFoodImage" alt="food image" class="food-display-image" />
 </div>
-  </div>
+</div>
 </template>
 
 <script setup>
@@ -96,116 +98,131 @@ const changeFoodImage = () => {
 </script>
 
 <style scoped>
-/* 전체를 감싸는 Flexbox 컨테이너 */
-.main-container {
+/* --- 1. 전체 레이아웃 --- */
+#container {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center; /* 전체 카드를 가운데 정렬 */
 }
 
-/* ⭐️ 1. 모든 예제 박스의 공통 스타일 */
-.example-box {
-  border: 1px dashed black;
+/* --- 2. 카드 공통 스타일 (핵심) --- */
+.card {
+  width: 400px;
   padding: 20px;
-  width: 250px; /* 기본 너비 통일 */
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* ⭐️ 2. 각 박스별 개별 스타일 */
-#lightDiv {
-  /* 외곽선을 다시 적용하기 위해 border: none 제거 */
-  padding: 20px; /* 외곽선과 내용물 사이의 여백을 위해 padding 다시 추가 */
-  width: 200px; 
-  height: 200px;
+/* --- 3. 공통 요소 스타일 --- */
+h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+p {
+  margin: 0;
+  color: #555;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* --- 4. 개별 카드 내부 요소 스타일 --- */
+
+/* 전구 스위치 */
+#light-card {
+  position: relative; /* 자식 요소의 absolute 기준점 */
+}
+#light-card img {
   position: relative;
-  justify-content: center;
-  margin-top: 50px; /* 원하는 만큼 값을 조절하여 아래로 내립니다 */
+  z-index: 1; /* 빛 효과보다 위에 있도록 설정 */
+  width: 120px;
+}
+.light-effect {
+  position: absolute;
+  top: 50%; /* ⭐️ 수직 중앙 */
+  left: 50%; /* ⭐️ 수평 중앙 */
+  transform: translate(-50%, -50%); /* ⭐️ 정중앙 배치 */
+  width: 150px; /* 이미지보다 크게 */
+  height: 150px;
+  border-radius: 50%;
+  background-color: yellow;
+  box-shadow: 0 0 50px 25px yellow; /* ⭐️ 빛 번짐 효과 추가 */
+  z-index: 0; /* 이미지보다 아래에 있도록 설정 */
 }
 
-#foodWrapper .food-content {
+/* 마우스오버 색상 변경 */
+#mouseover-card #box {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+}
+
+/* 음식 리스트 */
+#food-card .food-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 16px;
 }
-
-/* 3. 내부 요소 스타일 */
-img {
-  width: 100%;
-  display: block;
-}
-
-#lightDiv > img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-}
-
-.light-effect {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* ⭐️ 정중앙 배치 */
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background-color: yellow;
-  box-shadow: 0 0 30px 15px yellow;
-  z-index: 0;
-}
-
-button,
-input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box; /* padding이 너비에 포함되도록 설정 */
-}
-
-#box {
-  width: 100%;
-  height: 80px;
-}
-
-#foodWrapper img {
-  width: 50%;
-}
-
-#foodWrapper ol {
+#food-card ol {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  text-align: left;
 }
-
-#foodWrapper li {
-  padding: 4px 8px;
+#food-card li {
+  padding: 6px 10px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-
-#foodWrapper li:hover {
-  background-color: rgb(224, 224, 224);
-}
-/* 기존 style 코드 아래에 이어서 추가하세요 */
-
-/* ⭐️ 새로운 예제 박스(#foodMouseoverWrapper) 내부 스타일 */
-#food-box {
-  width: 100%;
-  height: 150px;
-  border: 2px solid #a3a3a3;
-  border-radius: 8px;
+#food-card li:hover {
   background-color: #f0f0f0;
 }
+#food-card .food-content img {
+  width: 80px;
+  height: 80px;
+}
 
-.food-display-image {
-  width: 100px;
-  height: 100px;
-  object-fit: contain; /* 이미지가 잘리지 않고 비율에 맞게 표시되도록 설정 */
+/* 마우스오버 음식 변경 */
+#food-box{
+  width: 300px;
+  height: 200px;
+  background-color: grey;
+}
+
+#food-mouseover-card #food-box {
+  width: 100%;
+  height: 150px;
+  border: 2px dashed #dcdcdc;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+#food-mouseover-card .food-display-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
 }
 </style>

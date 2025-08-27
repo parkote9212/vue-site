@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div id="app1">
+    <div class="card">
       <p>아래 박스를 클릭하세요:</p>
-      <div @click="changeText">
+      <div id="clickBox" @click="changeText">
         {{ text }}
       </div>
     </div>
-    <div id="app2">
+    <div class="card">
       <p>마우스 오버 X,Y값</p>
-      <div
+      <div id="mouseBox"
         @mousemove="mousePos"
         :style="{ backgroundColor: 'hsl( ' + xPos + ', 80% , 80% )' }"
       >
@@ -20,12 +20,14 @@
       </p>
     </div>
 
-    <div id="app3">
-      <img :src="moose" width="200" height="400" />
+    <div class="card">
+      <img :src="moose" width="300" height="300" />
       <p>{{ "Moose count: " + count }}</p>
-      <button v-on:click="addMoose(1)">+1</button>
-      <button v-on:click="addMoose(5)">+5</button>
-      <button v-on:click="addMoose(-1)">-1</button>
+      <div id="wrap">
+      <button @click="addMoose(1)">+1</button>
+      <button @click="addMoose(5)">+5</button>
+      <button @click="addMoose(-1)">-1</button>
+      </div>
     </div>
   </div>
 </template>
@@ -52,64 +54,32 @@ function addMoose(number) {
 </script>
 
 <style scoped>
-#app1 {
-  border: black dashed 1px;
-  width: 200px;
-  padding: 0 20px 20px 20px;
-}
-#app1 > div {
-  width: 140px;
-  height: 60px;
-  background-color: lightgreen;
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  width: 400px;
+  border: 1px solid black;
   padding: 20px;
-  font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
+  margin: 20px;
 }
-
-#app2 {
-  border: black dashed 1px;
-  width: 200px;
-  padding: 0 20px 20px 20px;
-}
-#app2 > div {
-  width: 160px;
-  height: 80px;
-  background-color: lightcoral;
-  padding: 20px;
-}
-#app2 span {
-  font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
-}
-
-#app3 {
-  border: black dashed 1px;
+#clickBox {
   width: 300px;
-  padding: 20px;
+  height: 200px;
+  background-color: blueviolet;
+  color: white;
 }
-#app3 > div {
-  width: 100%;
-  position: relative;
-  margin-top: 10px;
-  aspect-ratio: 1;
-  background-image: url("img_notebook.jpg");
-  background-size: 340%;
-  background-position: -345px 0;
-  overflow: hidden;
+
+#mouseBox{
+  width: 300px;
+  height: 200px;
+
 }
-#app3 span {
-  width: 80%;
-  font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
-  line-height: 1.2em;
-  transform-origin: 0 0;
-  rotate: 33deg;
-  position: absolute;
-  top: 50px;
-  left: 70px;
+
+#wrap{
+  display: flex;
 }
-#app3 textarea {
-  width: 100%;
-  box-sizing: border-box;
-}
+
 </style>
+
