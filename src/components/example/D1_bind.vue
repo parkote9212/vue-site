@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="container">
     <div :style="{ backgroundColor: isImportant ? 'yellow' : 'blue' }" class="example-box">
       Style 바인딩 (배경색)
     </div>
@@ -29,13 +29,17 @@ const className = ref("impClass");
 <style scoped>
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction:column; 
+  align-items: center;    
+  justify-content: center;
+  
+  /* 👇 '100vh'를 '100%'로 변경 */
+  min-height: 100%;   
   gap: 20px;
 }
 
 .example-box {
-  width: 250px;
+  width: 400px;
   height: 100px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -45,6 +49,7 @@ const className = ref("impClass");
   font-weight: bold;
 }
 
+/* ... 나머지 스타일은 동일 ... */
 .impClass {
   background-color: lightcoral;
   color: white;

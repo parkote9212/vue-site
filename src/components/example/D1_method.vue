@@ -34,7 +34,7 @@
 
 <script setup>
 import { ref } from "vue";
-import moose from "../assets/img_moose.jpg";
+import moose from "../../assets/img_moose.jpg";
 
 const text = ref("");
 function changeText() {

@@ -39,8 +39,8 @@
 
 <script setup>
 import { ref } from "vue";
-import pizzaImg from "../assets/img_pizza.svg";
-import burritoImg from "../assets/img_burrito.svg";
+import pizzaImg from "../../assets/img_pizza.svg";
+import burritoImg from "../../assets/img_burrito.svg";
 const typerwriterInStock = ref(true);
 const typerwriterCount = ref(3);
 const text = ref("I like pizza");

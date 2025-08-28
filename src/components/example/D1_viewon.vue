@@ -58,15 +58,15 @@
 
 <script setup>
 import { ref } from "vue";
-import moose from "../assets/img_moose.jpg";
-import light from "../assets/img_lightBulb.svg";
-import Burrito from "../assets/img_burrito.svg";
-import Salad from "../assets/img_salad.svg";
-import Cake from "../assets/img_cake.svg";
-import Soup from "../assets/img_soup.svg";
-import Fish from "../assets/img_fish.svg";
-import Pizza from "../assets/img_pizza.svg";
-import Rice from "../assets/img_rice.svg";
+import moose from "../../assets/img_moose.jpg";
+import light from "../../assets/img_lightBulb.svg";
+import Burrito from "../../assets/img_burrito.svg";
+import Salad from "../../assets/img_salad.svg";
+import Cake from "../../assets/img_cake.svg";
+import Soup from "../../assets/img_soup.svg";
+import Fish from "../../assets/img_fish.svg";
+import Pizza from "../../assets/img_pizza.svg";
+import Rice from "../../assets/img_rice.svg";
 const count = ref(0);
 const lightOn = ref(false);
 const inpCount = ref(0);

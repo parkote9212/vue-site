@@ -23,13 +23,13 @@
 </template>
 
 <script setup>
-import pizzaImg from "../assets/img_pizza.svg";
-import burritoImg from "../assets/img_burrito.svg";
-import cakeImg from "../assets/img_cake.svg";
-import fishImg from "../assets/img_fish.svg";
-import riceImg from "../assets/img_rice.svg";
-import saladImg from "../assets/img_salad.svg";
-import soupImg from "../assets/img_soup.svg";
+import pizzaImg from "../../assets/img_pizza.svg";
+import burritoImg from "../../assets/img_burrito.svg";
+import cakeImg from "../../assets/img_cake.svg";
+import fishImg from "../../assets/img_fish.svg";
+import riceImg from "../../assets/img_rice.svg";
+import saladImg from "../../assets/img_salad.svg";
+import soupImg from "../../assets/img_soup.svg";
 import { ref } from "vue";
 
 const manyFoods = ref([

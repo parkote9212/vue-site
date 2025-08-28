@@ -28,14 +28,14 @@
 
 <script setup>
 import { ref } from "vue";
-import tiger from "../assets/img_tiger_square.jpeg";
-import Burrito from "../assets/img_burrito.svg";
-import Salad from "../assets/img_salad.svg";
-import Cake from "../assets/img_cake.svg";
-import Soup from "../assets/img_soup.svg";
-import Fish from "../assets/img_fish.svg";
-import Pizza from "../assets/img_pizza.svg";
-import Rice from "../assets/img_rice.svg";
+import tiger from "../../assets/img_tiger_square.jpeg";
+import Burrito from "../../assets/img_burrito.svg";
+import Salad from "../../assets/img_salad.svg";
+import Cake from "../../assets/img_cake.svg";
+import Soup from "../../assets/img_soup.svg";
+import Fish from "../../assets/img_fish.svg";
+import Pizza from "../../assets/img_pizza.svg";
+import Rice from "../../assets/img_rice.svg";
 
 const opac = ref(0.8);
 const bgImage = ref(`url(${tiger})`);

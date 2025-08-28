@@ -62,9 +62,12 @@ button:focus-visible {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
-}
+  /* text-align: center; <- 자식 컴포넌트에서 정렬을 제어하므로 제거하거나 유지해도 됨 */
 
+  /* 👇 이 두 줄을 추가해주세요 */
+  width: 100%;
+  flex-grow: 1; /* body의 남은 공간을 모두 차지하도록 설정 */
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

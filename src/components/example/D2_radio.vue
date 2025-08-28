@@ -30,13 +30,13 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import pizza from "../assets/img_pizza.svg";
-import burrito from "../assets/img_burrito.svg";
-import cake from "../assets/img_cake.svg";
-import fish from "../assets/img_fish.svg";
-import rice from "../assets/img_rice.svg";
-import salad from "../assets/img_salad.svg";
-import soup from "../assets/img_soup.svg";
+import pizza from "../../assets/img_pizza.svg";
+import burrito from "../../assets/img_burrito.svg";
+import cake from "../../assets/img_cake.svg";
+import fish from "../../assets/img_fish.svg";
+import rice from "../../assets/img_rice.svg";
+import salad from "../../assets/img_salad.svg";
+import soup from "../../assets/img_soup.svg";
 const picked = ref("");
 const picked2 = ref("");
 const foods = ref([
