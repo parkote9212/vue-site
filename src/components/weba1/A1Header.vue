@@ -49,6 +49,7 @@ const hideAllSubmenus = () => {
 <style scoped>
 /* 헤더와 메뉴 관련 스타일 */
 header {
+  width: 1200px;
   height: 100px; /* 와이어프레임 A 영역 높이 */
   border-bottom: 1px solid #ccc;
 }

@@ -51,6 +51,7 @@ const snsLinks = ref([
 footer {
   height: 100px;
   background-color: #f2f2f2;
+  width: 1200px;
 }
 .footer-container {
   width: 1200px;
@@ -68,6 +69,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin: 10px;
 }
 .sns-links img {
   height: 24px;

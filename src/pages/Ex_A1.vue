@@ -6,7 +6,6 @@
       <A1Contents />
     </main>
     <A1Footer />
-    <A1Popup/>
   </div>
 </template>
 
@@ -16,7 +15,6 @@ import A1Header from '../components/weba1/A1Header.vue';
 import A1Slider from '../components/weba1/A1Slider.vue';
 import A1Contents from '../components/weba1/A1Contents.vue';
 import A1Footer from '../components/weba1/A1Footer.vue';
-import A1Popup from '../components/weba1/A1Popup.vue';
 
 // 팝업 표시 상태를 관리하는 ref
 </script>
